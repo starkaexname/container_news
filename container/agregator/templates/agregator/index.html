@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+{{ text_prop }}
+{% for item in news %}
+<div class="card mt-3">
+    <div class="card-header">
+        В категории: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+    </div>
+    <div class="card-body">
+        <div class="media">
+            <h4><a href="{{ item.get_absolute_url }}" class="text-decoration-none text-reset">{{ item.title|linebreaks }}</a></h4>
+            {%  if item.photo_url %}
+            <a href="{{ item.get_absolute_url }}">
+                <img src="{{ item.photo_url }}" width="300" height="200"/>
+            </a>
+            {% else %}
+            <img src="https://picsum.photos/id/1018/300/200" alt="" width="300" height="200">
+            {% endif %}
+            <div class="media-body">
+                <h6>
+                    <p class="card-text">{{ item.preview_text|linebreaks}}</p>
+                </h6>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ item.pk }}" aria-expanded="false" aria-controls="collapseExample{{ item.pk }}">
+                    развернуть
+                </button> <a href="{{ item.get_absolute_url }}" class="btn btn-outline-primary">читать полностью...</a>
+                <div class="collapse" id="collapseExample{{ item.pk }}">
+                    <p class="card-text">{{ item.full_text|safe}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ item.published_at }} просмотры: {{ item.views }}
+    </div>
+
+
+</div>
+{% endfor %}
+{% endblock %}
+

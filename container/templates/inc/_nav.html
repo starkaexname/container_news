@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-blue bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'homepage' %}">[container.news]</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'homepage' %}">Главная</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_news' %}">Добавить новость</a>
+        </li>
+        {% if request.user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'AdMailto' %}">Отправить письмо</a>
+        </li>
+        {% endif %}
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+        <form class="d-flex" action="{% url 'search' %}" method="get">
+          <input class="form-control me-2" type="search" placeholder="введите слово..." aria-label="search" name="q">
+          <button class="btn btn-outline-primary" type="submit">Поиск</button>
+        </form>
+      </ul>
+      <li class="navbar-text">
+        {% if request.user.is_authenticated %}
+        Вход выполнен для {{ user }} | <a href="{% url 'logout' %}">Выйти</a>
+        {% else %}
+        <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a>
+        {% endif %}
+      </li>
+    </div>
+  </div>
+</nav>

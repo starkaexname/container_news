@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Send e-mail
+{% endblock %}
+
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Отправка письма</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+</form>
+{% endblock %}
