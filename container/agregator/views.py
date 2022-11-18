@@ -123,7 +123,8 @@ def update_news():
         Cat_id = clean_cat_dict.get(item)
         get_korr(cat_dict.get(item), Cat_id, clean_news_set)
 
-# update_news()
+
+update_news()
 
 
 class NewsList(myMixin, ListView):
