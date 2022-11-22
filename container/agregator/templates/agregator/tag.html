@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }} {{ tag }}
+{% endblock %}
+
+
+{% block sidebar %}
+<div class="list-group mt-3">
+    <a href="{% url 'homepage' %}" class="list-group-item list-group-item-action">Все</a>
+    {% for item in tags %}
+    {% if item.tagarticle == tag %}
+    <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action active">{{ item.tagarticle }}</a>
+    {% else %}
+    <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action">{{ item.tagarticle }}</a>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block content %}
+{% for item in news %}
+<div class="card mt-3">
+    <div class="card-header">
+        <a href="{{ item.tag.get_absolute_url }}">{{ tag }}</a>
+    </div>
+    <div class="card-body">
+        <div class="media">
+            <h4><a href="{{ item.get_absolute_url }}" class="text-decoration-none text-reset">{{ item.title|linebreaks }}</a></h4>
+            {%  if item.photo_url %}
+            <a href="{{ item.get_absolute_url }}">
+                <img src="{{ item.photo_url }}" alt="" width="300" height="189"></a>
+                {% else %}
+                <img src="https://picsum.photos/id/1018/300/200" alt="" width="300" height="189">
+                {% endif %}
+                <div class="media-body">
+                    <h6>
+                        <p class="card-text">{{ item.preview_text|linebreaks}}</p>
+                    </h6>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ item.pk }}" aria-expanded="false" aria-controls="collapseExample{{ item.pk }}">
+                        развернуть
+                    </button> <a href="{{ item.get_absolute_url }}" class="btn btn-outline-primary">читать полностью...</a>
+                    <div class="collapse" id="collapseExample{{ item.pk }}">
+                        <p class="card-text">{{ item.full_text|safe}}</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ item.published_at }} / просмотров: {{ item.views }}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
