@@ -23,15 +23,26 @@
             <img src="https://picsum.photos/id/1018/300/200" alt="">
             {% endif %}
             <div class="media-body">
+                <header>
+                    <p class="card-text">{{ news_item.photo_src_name}}</p>
+                </header>
                 <h6>
                     <p class="card-text">{{ news_item.preview_text|linebreaks}}</p>
                 </h6>
                 <p class="card-text">{{ news_item.full_text|safe}}</p>
+                <hr>
+                    <em>
+                    <b>Теги:</b>
+                    {% for tag in news_item.tags.all %}
+                    <a href="{{ tag.get_absolute_url }}">{{ tag }}</a>,
+                    {% endfor %}
+                    <em/>
             </div>
         </div>
     </div>
     <div class="card-footer text-muted">
-        {{ news_item.published_at }}
+        Текст: {{ news_item.text_author}} / {{ news_item.published_at }} / просмотров: {{ news_item.views }}
+
     </div>
 </div>
 {% endblock %}

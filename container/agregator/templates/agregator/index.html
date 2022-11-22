@@ -21,10 +21,10 @@
             <h4><a href="{{ item.get_absolute_url }}" class="text-decoration-none text-reset">{{ item.title|linebreaks }}</a></h4>
             {%  if item.photo_url %}
             <a href="{{ item.get_absolute_url }}">
-                <img src="{{ item.photo_url }}" width="300" height="200"/>
+                <img src="{{ item.photo_url }}" width="300" height="189"/>
             </a>
             {% else %}
-            <img src="https://picsum.photos/id/1018/300/200" alt="" width="300" height="200">
+            <img src="https://picsum.photos/id/1018/300/200" alt="" width="300" height="189">
             {% endif %}
             <div class="media-body">
                 <h6>
@@ -40,11 +40,12 @@
         </div>
     </div>
     <div class="card-footer text-muted">
-        {{ item.published_at }} просмотры: {{ item.views }}
+        {{ item.published_at }} / просмотров: {{ item.views }}
     </div>
-
-
 </div>
 {% endfor %}
+<ul>
+
+</ul>
 {% endblock %}
 

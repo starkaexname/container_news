@@ -26,20 +26,28 @@
     </div>
     <div class="card-body">
         <div class="media">
-            <h5 class="card-title">{{ item.title }}</h5>
+            <h4><a href="{{ item.get_absolute_url }}" class="text-decoration-none text-reset">{{ item.title|linebreaks }}</a></h4>
             {%  if item.photo_url %}
-            <img src="{{ item.photo_url }}" alt="" width="300" height="200">
-            {% else %}
-            <img src="https://picsum.photos/id/1018/300/200" alt="">
-            {% endif %}
-            <div class="media-body">
-                <p class="card-text">{{ item.full_text|safe|linebreaks|truncatewords:50 }}</p>
-                <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Читать далее...</a>
-            </div>
+            <a href="{{ item.get_absolute_url }}">
+                <img src="{{ item.photo_url }}" alt="" width="300" height="189"></a>
+                {% else %}
+                <img src="https://picsum.photos/id/1018/300/200" alt="" width="300" height="189">
+                {% endif %}
+                <div class="media-body">
+                    <h6>
+                        <p class="card-text">{{ item.preview_text|linebreaks}}</p>
+                    </h6>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ item.pk }}" aria-expanded="false" aria-controls="collapseExample{{ item.pk }}">
+                        развернуть
+                    </button> <a href="{{ item.get_absolute_url }}" class="btn btn-outline-primary">читать полностью...</a>
+                    <div class="collapse" id="collapseExample{{ item.pk }}">
+                        <p class="card-text">{{ item.full_text|safe}}</p>
+                    </div>
+                </div>
         </div>
     </div>
     <div class="card-footer text-muted">
-        {{ item.published_at }}
+        {{ item.published_at }} / просмотров: {{ item.views }}
     </div>
 </div>
 {% endfor %}
