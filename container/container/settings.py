@@ -71,14 +71,15 @@ WSGI_APPLICATION = 'container.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'djangoDB',
-        # 'USER': 'root',
-        # 'PASSWORD': 'root',
-        # 'HOST': 'localhost',
-        # 'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_django1',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'db',
+        'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
@@ -128,6 +129,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CELERY_BROKER_URL = 'redis://redis:6379/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '465'
