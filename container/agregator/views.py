@@ -14,8 +14,6 @@ from .tasks import updating
 from .parser import update_news
 
 
-# update_news()
-
 class NewsList(myMixin, ListView):
     model = News
     context_object_name = 'news'
@@ -48,8 +46,6 @@ class ViewNews(DetailView):
     template_name = 'agregator/view_news.html'
     context_object_name = 'news_item'
     def get_queryset(self):
-        updating.delay()
-        # update_news()
         return News.objects.select_related('category').prefetch_related('tags')
 
 class CreateNews(LoginRequiredMixin, CreateView):
@@ -127,7 +123,7 @@ def admailto(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['full_text'],
-                             'jbexname@gmail.com', ['bjexname@gmail.com', ], fail_silently=True)
+                             '46346346346@gmail.com', ['346346346346@gmail.com', ], fail_silently=True)
             if mail:
                 messages.success(request, 'Письмо успешно отправлено')
                 return redirect('AdMailto')

@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-uro7t6!$ogrn*&3o1a1i#4%nl3^^hlo_z3fx*)2r-(97(qvwl3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', ]
 
 INTERNAL_IPS = ["127.0.0.1", ]
 
@@ -133,8 +133,8 @@ CELERY_BROKER_URL = 'redis://redis:6379/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'jbexname@gmail.com'
-EMAIL_HOST_PASSWORD = 'angltqpmpewozgzv'
+EMAIL_HOST_USER = '123123.com'
+EMAIL_HOST_PASSWORD = '12312312312312312'
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 

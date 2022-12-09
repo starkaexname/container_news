@@ -45,13 +45,12 @@ def get_korr(cat_link, cat_id, clean_news_set, year, month, current_date):
     page = 1
     while day <= current_date.day:
         clean_link = (cat_link + year + '/' + month + '/' + str(day) + '/' + 'p' + str(page))
-        print(clean_link)
+        # print(clean_link)
         r = requests.get(clean_link).text
         soup = BeautifulSoup(r, 'lxml')
         posts = soup.find_all('div', class_="article__title")
         page += 1
         if len(posts):
-            pass
             for post in posts:
                 if not post.find('em'):
                     content_url = post.find('a').get('href')
@@ -90,14 +89,16 @@ def get_korr(cat_link, cat_id, clean_news_set, year, month, current_date):
                                                         photo_src_name=photo_src_name, views=views,
                                                         preview_text=preview_text
                                                         )
-                                print(n)
                                 clean_tag_set = set(Tag.objects.values_list('tagarticle', flat=True))
+                                news_tags_set = set()
                                 for i in tags:
-                                    if i.text not in clean_tag_set:
-                                        t = Tag.objects.create(tagarticle=i.text)
+                                    news_tags_set.add(str(i.text).strip().upper())
+                                for clt in news_tags_set:
+                                    if clt not in clean_tag_set:
+                                        t = Tag.objects.create(tagarticle=clt)
                                         n.tags.add(t)
                                     else:
-                                        t2 = Tag.objects.get(tagarticle=i.text)
+                                        t2 = Tag.objects.get(tagarticle=clt)
                                         n.tags.add(t2)
                     else:  # views count updating
                         c = News.objects.get(content_url=content_url)

@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Tag(models.Model):
-    tagarticle = models.CharField(max_length=50, verbose_name='Тег')
+    tagarticle = models.CharField(max_length=100, verbose_name='Тег')
 
     class Meta:
         verbose_name = 'Тег'
@@ -23,10 +23,10 @@ class News(models.Model):
     category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
     full_text = models.TextField('Текст новости', default=None)
     preview_text = models.TextField('Текст новости', default=None)
-    text_author = models.CharField(max_length=50, verbose_name='Автор текста', default=None)
+    text_author = models.CharField(max_length=100, verbose_name='Автор текста', default=None)
     published_at = models.DateTimeField(verbose_name='Дата публикации', default=None)
     photo_url = models.URLField(verbose_name='Ссылка на фото', default=None)
-    photo_src_name = models.CharField(max_length=50, verbose_name='Источник фото', default=None)
+    photo_src_name = models.CharField(max_length=100, verbose_name='Источник фото', default=None)
     views = models.PositiveIntegerField(verbose_name='Просмотры', default=None)
     tags = models.ManyToManyField('Tag', related_name='tegi')
 
