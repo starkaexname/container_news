@@ -1,8 +1,12 @@
-# container_news is a Django news agregator website project.
+# container_news is a Django news agregator website project
+<p>
 The application performs data web scraping asynchronously using SQL database to store and render data.
 The initial data is taken from an open source.
-### Used tools and techs: Django, Docker compose, MySQL, BeautifulSoup, Celery beat, Redis, HTML, Bootstrap, CSS
-
+</p>
+Used tools and techs: Django, Docker compose, MySQL, BeautifulSoup, Celery beat, Redis, HTML, Bootstrap, CSS
+<p>
+Functionality: categories, tags, pagination, search, user registration, automatic updating news every 5 minutes
+</p>
 
 ### App Preview:
 
