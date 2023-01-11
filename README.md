@@ -1,4 +1,4 @@
-# container_news is a Django news agregator website project
+# container_news is a Django news aggregator website project
 <p>
 The application performs data web scraping asynchronously using SQL database to store and render data.
 The initial data is taken from an open source.
